@@ -9,8 +9,15 @@ use App\Http\controllers\AuthorController;
 use App\Http\controllers\ProductcategoryController;
 use App\Http\controllers\ProductsoldController;
 use App\Http\controllers\CommentController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
+Route::get('/home', function () {
     return view('welcome');
 })->name('home');
 
@@ -18,10 +25,29 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+ // authentication routes
+Route::get('register', [AuthController::class, 'showRegister'])->name('register.form');
+Route::post('register', [AuthController::class, 'register'])->name('register.form');
+
+Route::get('login', [AuthController::class, 'showLogin'])->name('login.form');
+Route::post('login', [AuthController::class, 'login'])->name('login.form');
+
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+require __DIR__.'/auth.php';   
+
 Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
 Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
 Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store');
 Route::get('/authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
+
+Route::get('/customers', [CustomerController::class, 'index'])->name('users.index');
+Route::get('/customers/create', [CustomerController::class, 'create'])->name('users.create');
+Route::post('/customers', [CustomerController::class, 'store'])->name('users.store');
+Route::get('/customers/{customer}', [CustomerController::class, 'show'])->name('users.show');
+Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('users.edit');
+Route::put('/customers/{customer}', [CustomerController::class, 'update'])->name('users.update');
+Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])->name('users.destroy');
 
 Route::get('/productcategories', [ProductcategoryController::class, 'index'])->name('productcategories.index');
 Route::get('/productcategories/create', [ProductcategoryController::class, 'create'])->name('productcategories.create');
@@ -68,4 +94,4 @@ Route::middleware(['auth'])->group(function () {
         ->name('two-factor.show');
 });
 
-require __DIR__.'/auth.php';
+

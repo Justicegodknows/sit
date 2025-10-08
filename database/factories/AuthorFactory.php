@@ -12,9 +12,8 @@ class AuthorFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    protected
     public function definition(): array
     {
 
