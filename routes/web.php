@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
-use app\Http\Controllers\ProfileController; 
-use app\Http\Controllers\PasswordController;
-use app\Http\controllers\AuthorController;
-use app\Http\controllers\ProductcategoryController;
-use app\Http\controllers\ProductsoldController;
-use app\Http\controllers\CommentController;
+use App\Http\Controllers\ProfileController; 
+use App\Http\Controllers\PasswordController;
+use App\Http\controllers\AuthorController;
+use App\Http\controllers\ProductcategoryController;
+use App\Http\controllers\ProductsoldController;
+use App\Http\controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
