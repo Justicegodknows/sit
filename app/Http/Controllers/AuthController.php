@@ -30,16 +30,33 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('welcome');
+        return redirect()->route('dashboard');
     }
 
     public function showLogin()
     {
         return view('auth.login');
     }
+    // Create a default admin user if it doesn't exist
+    public static function ensureDefaultAdmin()
+    {
+        $defaultEmail = 'admin';
+        $defaultPassword = 'admin';
+
+        $user = User::where('email', $defaultEmail)->first();
+        if (!$user) {
+            User::create([
+                'name' => 'Admin',
+                'email' => $defaultEmail,
+                'password' => Hash::make($defaultPassword),
+            ]);
+        }
+    }
 
     public function login(Request $request)
     {
+        self::ensureDefaultAdmin();
+
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
@@ -47,7 +64,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->route('welcome');
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
