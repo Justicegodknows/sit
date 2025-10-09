@@ -1,12 +1,10 @@
-<html>
-<head><meta charset="utf-8"><title>Author Details</title></head>
-<body> 
-    <x-layouts.app>
+<x-layouts.app>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Author Details
         </h2>
     </x-slot>
+    @section('content')
     <div class="container">
         <h1>Author Details</h1>
         <div class="card">
@@ -18,9 +16,6 @@
     </div>
     <a href="{{ route('authors.index') }}" class="btn btn-secondary mt-3">Back to Authors</a>
 </div>
-</x-layouts.app>
-@section('content')
-
 @endsection
-</body>
-</html>
+</x-layouts.app>
+

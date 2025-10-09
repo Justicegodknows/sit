@@ -40,6 +40,9 @@ Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index'
 Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
 Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store');
 Route::get('/authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
+Route::get('/authors/{author}/edit', [AuthorController::class, 'edit'])->name('authors.edit');
+Route::put('/authors/{author}', [AuthorController::class, 'update'])->name('authors.update');
+Route::delete('/authors/{author}', [AuthorController::class, 'destroy'])->name('authors.destroy');
 
 Route::get('/customers', [CustomerController::class, 'index'])->name('users.index');
 Route::get('/customers/create', [CustomerController::class, 'create'])->name('users.create');
@@ -64,6 +67,12 @@ Route::get('/productsolds/{productsold}', [ProductsoldController::class, 'show']
 Route::get('/productsolds/{productsold}/edit', [ProductsoldController::class, 'edit'])->name('productsolds.edit');
 Route::put('/productsolds/{productsold}', [ProductsoldController::class, 'update'])->name('productsolds.update');
 Route::delete('/productsolds/{productsold}', [ProductsoldController::class, 'destroy'])->name('productsolds.destroy');
+
+// Dashboard route that links to product category page after login
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
 Route::get('/comments/create', [CommentController::class, 'create'])->name('comments.create');

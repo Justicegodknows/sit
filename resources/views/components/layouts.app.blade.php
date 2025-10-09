@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.tailwindcss.com"></script>
     <meta charset="UTF-8">
-    <title>{{ config('app.name', 'Laravel Project') }}</title>
+    <title>{{('African Beads') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -12,7 +13,7 @@
             color: #222;
         }
         header {
-            background: #1a202c;
+            background: #000000;
             color: #fff;
             padding: 1rem 2rem;
             display: flex;
@@ -37,7 +38,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         footer {
-            background: #1a202c;
+            background: #000000;
             color: #fff;
             text-align: center;
             padding: 1rem 0;
@@ -48,11 +49,11 @@
 <body>
     <header>
         <div>
-            <strong>{{ config('app.name', 'Laravel Project') }}</strong>
+            <strong>{{('African Beads') }}</strong>
         </div>
         <nav>
             <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('dashboard') }}">Dashboard</a>
+            <a href="{{ route('Productcategory') }}">Product Category</a>
             <a href="{{ route('profile') }}">Profile</a>
             <a href="{{ route('logout') }}">Logout</a>
         </nav>
@@ -61,7 +62,7 @@
         {{ $slot }}
     </main>
     <footer>
-        &copy; {{ date('Y') }} {{ config('app.name', 'Laravel Project') }}. All rights reserved.
+        &copy; {{ date('Y') }} {{('African Beads') }}. All rights reserved.
     </footer>
 </body>
 </html>

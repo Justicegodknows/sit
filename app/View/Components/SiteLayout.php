@@ -11,8 +11,10 @@ class SiteLayout extends Component
     /**
      * Create a new component instance.
      */
+    public $name;
     public function __construct()
     {
+        $this->name = 'African Beads';
         //
     }
 

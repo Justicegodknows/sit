@@ -1,4 +1,4 @@
-@extends('layouts.app')
+<x-site-layout>
 
 @section('content')
 <div class="container">
@@ -14,13 +14,13 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($products as $product)
+            @forelse($productsolds as $productsold)
                 <tr>
-                    <td>{{ $product->id }}</td>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->sold_at }}</td>
-                    <td>${{ number_format($product->price, 2) }}</td>
-                    <td>{{ $product->buyer_name }}</td>
+                    <td>{{ $productsold->id }}</td>
+                    <td>{{ $productsold->name }}</td>
+                    <td>{{ $productsold->sold_at }}</td>
+                    <td>${{ number_format($productsold->price, 2) }}</td>
+                    <td>{{ $productsold->customer->name }}</td>
                 </tr>
             @empty
                 <tr>
@@ -31,3 +31,4 @@
     </table>
 </div>
 @endsection
+</x-site-layout>

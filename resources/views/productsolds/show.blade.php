@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('site-layout')
 
 @section('content')
 <div class="container">
@@ -18,3 +18,4 @@
     @endif
 </div>
 @endsection
+</x-site-layout>

@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+<x-site-layout>
 @section('content')
 <div class="container">
     <h1>Comment Details</h1>
@@ -32,3 +31,4 @@
     @endcan
 </div>
 @endsection
+</x-site-layout>

@@ -11,13 +11,13 @@ class CustomerController extends Controller
     public function index()
     {
         $users = User::all();
-        return response()->json($users);
+        return view('users.index', compact('users'));
     }
 
     // uses route-model binding: route parameter name should be {user}
     public function show(User $user)
     {
-        return response()->json($user);
+        return view('users.show', compact('user'));
     }
 
     // create a user (ensure User::$fillable includes these fields)
@@ -33,6 +33,6 @@ class CustomerController extends Controller
 
         $user = User::create($data);
 
-        return response()->json($user, 201);
+        return view('users.store', compact('user'));
     }
 }

@@ -11,41 +11,41 @@ class ProductsoldController extends Controller
     public function index()
     {
         $productsolds = Productsold::all();
-        return response()->json($productsolds);
+        return view('productsolds.index', compact('productsolds'));
     }
 
     public function show($id)
     {
         $productsold = Productsold::find($id);
         if (!$productsold) {
-            return response()->json(['message' => 'Product not found'], 404);
+            return view('productsolds.show', ['message' => 'Product not found'], 404);
         }
-        return response()->json($productsold);
+        return view('productsolds.show', compact('productsold'));
     }
 
     public function store(Request $request)
     {
         $productsold = Productsold::create($request->all());
-        return response()->json($productsold, 201);
+        return view('productsolds.store', compact('productsold'));
     }
 
     public function update(Request $request, $id)
     {
         $productsold = Productsold::find($id);
         if (!$productsold) {
-            return response()->json(['message' => 'Product not found'], 404);
+            return view('productsolds.update', ['message' => 'Product not found'], 404);
         }
         $productsold->update($request->all());
-        return response()->json($productsold);
+        return view('productsolds.update', compact('productsold'));
     }
 
     public function destroy($id)
     {
         $productsold = Productsold::find($id);
         if (!$productsold) {
-            return response()->json(['message' => 'Product not found'], 404);
+            return view('productsolds.destroy', ['message' => 'Product not found'], 404);
         }
         $productsold->delete();
-        return response()->json(['message' => 'Product deleted']);
+        return view('productsolds.destroy', ['message' => 'Product deleted']);
     }
 }
