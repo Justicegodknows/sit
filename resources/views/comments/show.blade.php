@@ -9,10 +9,12 @@
 
     <div class="card mb-3">
         <div class="card-body">
-            <h5 class="card-title">Comment by: {{ $comment->user->name ?? 'Anonymous' }}</h5>
-            <p class="card-text">{{ $comment->content }}</p>
+            <h5 class="card-title">Comment by: {{ $comments->user->name ?? 'Anonymous' }}</h5>
+            <h5 class="card-title">Comment by: {{ $comments->user->name ?? 'Anonymous' }}</h5>
+            <p class="card-text">{{ $comments->content }}</p>
+            <p class="card-text">{{ $comments->author }}</p>
             <p class="card-text">
-                <small class="text-muted">Posted on {{ $comment->created_at->format('M d, Y H:i') }}</small>
+                <small class="text-muted">Posted on {{ $comments->created_at->format('M d, Y H:i') }}</small>
             </p>
         </div>
     </div>

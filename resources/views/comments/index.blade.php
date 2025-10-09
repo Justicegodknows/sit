@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{ $comment->id }}</td>
                     <td>{{ $comment->content }}</td>
-                    <td>{{ $comment->author }}</td>
+                    <td>{{ $comment->user->name ?? 'Unknown User' }}</td>
                     <td>{{ $comment->created_at->format('Y-m-d') }}</td>
                     <td>
                         <a href="{{ route('comments.show', $comment->id) }}" class="btn btn-info btn-sm">View</a>
