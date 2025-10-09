@@ -32,10 +32,5 @@ class DashboardController extends Controller
         return view('productsolds.index', compact('productsolds'));
     }
 
-    public function products()
-    {
-        // Assuming you have a Product model
-        $products = Product::all();
-        return view('products.index', compact('products'));
-    }
+    
 }
