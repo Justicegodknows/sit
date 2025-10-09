@@ -1,5 +1,4 @@
 <?php
-<?php
 
 namespace App\Http\Controllers;
 
@@ -12,7 +11,7 @@ class AuthController extends Controller
 {
     public function showRegister()
     {
-        return view('register.form');
+        return view('auth.register');
     }
 
     public function register(Request $request)
@@ -36,7 +35,7 @@ class AuthController extends Controller
 
     public function showLogin()
     {
-        return view('login.form');
+        return view('auth.login');
     }
 
     public function login(Request $request)

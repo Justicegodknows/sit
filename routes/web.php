@@ -34,7 +34,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login.form');
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-require __DIR__.'/auth.php';   
+  
 
 Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
 Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
