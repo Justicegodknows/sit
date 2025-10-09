@@ -11,25 +11,8 @@
                     <form method="POST" action="{{ route('comments.store') }}">
                         @csrf
                         
-                        <div class="space-y-6">
-                            <!-- User Selection -->
-                            <div>
-                                <label for="user_id" class="block text-sm font-medium text-gray-700">User</label>
-                                <select id="user_id" 
-                                        name="user_id" 
-                                        required
-                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('user_id') border-red-500 @enderror">
-                                    <option value="">Select a user</option>
-                                    @foreach($users as $user)
-                                        <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
-                                            {{ $user->name }} ({{ $user->email }})
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('user_id')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
+                        
+                            
 
                             <!-- Comment Title -->
                             <div>
@@ -51,7 +34,7 @@
                                 <textarea id="content" 
                                           name="content" 
                                           rows="6" 
-                                          required
+                                        
                                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('content') border-red-500 @enderror" 
                                           placeholder="Enter your comment content">{{ old('content') }}</textarea>
                                 <p class="mt-1 text-xs text-gray-500">Maximum 1000 characters</p>
@@ -60,26 +43,7 @@
                                 @enderror
                             </div>
 
-                            <!-- Product Selection (Optional) -->
-                            <div>
-                                <label for="product_id" class="block text-sm font-medium text-gray-700">Related Product (Optional)</label>
-                                <select id="product_id" 
-                                        name="product_id"
-                                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('product_id') border-red-500 @enderror">
-                                    <option value="">No specific product</option>
-                                    @if(isset($products))
-                                        @foreach($products as $product)
-                                            <option value="{{ $product->id }}" {{ old('product_id') == $product->id ? 'selected' : '' }}>
-                                                {{ $product->name ?? $product->title ?? 'Product #' . $product->id }}
-                                            </option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                                @error('product_id')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
+                            
 
                         @if($errors->any())
                             <div class="mt-6 rounded-md bg-red-50 p-4">

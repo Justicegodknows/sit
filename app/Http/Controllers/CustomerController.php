@@ -4,20 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Author;
 
 class CustomerController extends Controller
 {
     // return all users/customers
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        $authors = Author::all();
+        return view('authors.index', compact('authors'));
     }
 
     // uses route-model binding: route parameter name should be {user}
-    public function show(User $user)
+    public function show(Author $user)
     {
-        return view('users.show', compact('user'));
+        return view('authors.show', compact('user'));
     }
 
     // create a user (ensure User::$fillable includes these fields)
@@ -31,8 +32,8 @@ class CustomerController extends Controller
 
         $data['password'] = bcrypt($data['password']);
 
-        $user = User::create($data);
+        $user = Author::create($data);
 
-        return view('users.store', compact('user'));
+        return view('authors.store', compact('user'));
     }
 }

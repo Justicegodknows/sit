@@ -16,7 +16,7 @@
     - Check your server's PHP installation and configuration.
 --}}
 
-@section('content')
+
 <div class="container">
     <h1>Product Categories</h1>
     <a href="{{ route('productcategories.create') }}" class="btn btn-primary mb-3">Add New Category</a>
@@ -43,6 +43,7 @@
                     <td>
                         <a href="{{ route('productcategories.show', $category->id) }}" class="btn btn-info btn-sm">View</a>
                         <a href="{{ route('productcategories.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ route('productcategories.show', $category->id) }}" class="btn btn-info btn-sm">View</a>
                         <form action="{{ route('productcategories.destroy', $category->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -58,5 +59,5 @@
         </tbody>
     </table>
 </div>
-@endsection
+
 </x-site-layout>

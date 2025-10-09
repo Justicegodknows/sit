@@ -15,7 +15,7 @@
 
         </div>
         <div>
-          <a href="/Productcategory" class="text-lg font-semibold hover:underline">Product Category</a>
+          <a href="{{ route('dashboard') }}" class="text-lg font-semibold hover:underline">Dashboard</a>
         </div>
         
     </header>
@@ -66,7 +66,7 @@
         {{ $slot }}
     </main>
 
-    <footer class="mx-auto max-w-5xl p-4 text-sm bg-blue-700 text-white">
+    <footer class="mx-auto max-w-7xl p-4 text-sm bg-blue-700 text-white">
         &copy; {{ date('Y') }} Beautiful African Beads. All rights reserved.
     </footer>
 </body>

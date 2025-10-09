@@ -1,18 +1,9 @@
 <x-site-layout>
-    <x-slot name="header">
+    
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Authors
         </h2>
-    </x-slot> 
-
-    {{-- 
-        The cause of the HTTP ERROR 500 is likely due to mixing raw HTML structure (<html>, <head>, <body>) with Blade layout components (<x-layouts.app> and @section('content')).
-        In Blade, when using a layout (like <x-layouts.app> or @extends), you should NOT include <html>, <head>, or <body> tags in your view.
-        Instead, let the layout handle the HTML structure, and only define the content sections here.
-        FIX: Remove the <html>, <head>, and <body> tags from this file.
-    --}}
-
-    @section('content')
+    
         <div class="container">
             <h1>Authors</h1>
             <a href="{{ route('authors.create') }}" class="btn btn-primary mb-3">Add New Author</a>
@@ -66,5 +57,5 @@
             
     
         </div>
-    @endsection
+    
 </x-site-layout>

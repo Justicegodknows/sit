@@ -19,9 +19,9 @@ class CommentFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraph(12, true),
-            'user_id' => \App\Models\User::factory(1,10),
-            'product_id' => \App\Models\Product::factory(),
-            //
+            'user_id' => \App\Models\User::factory(),
+            'productsolds_id' => \App\Models\Productsold::factory(),
+            'productcategories_id' => \App\Models\Productcategory::factory(),
         ];
     }
 }

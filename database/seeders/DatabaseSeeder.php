@@ -17,24 +17,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Create users first (no dependencies)
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        User::factory()->count(5)->create();
+        $this->command->info('Users created successfully.');
     
+        // Create authors (no dependencies)
         Author::factory()->count(10)->create();
         $this->command->info('Authors created successfully.');
 
-    
+        // Create product categories (depends on authors)
         ProductCategory::factory()->count(10)->create();
         $this->command->info('Product Categories created successfully.');
        
-    
+        // Create products sold (depends on users and authors)
         Productsold::factory()->count(10)->create();
         $this->command->info('Products Sold created successfully.');
     
+        // Create comments (depends on users, products, and categories)
         Comment::factory()->count(10)->create();
         $this->command->info('Comments created successfully.');
     }

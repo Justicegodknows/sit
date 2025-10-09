@@ -1,6 +1,4 @@
-@extends('site-layout')
-
-@section('content')
+<x-site-layout>
 <div class="container">
     <h1>Product Details</h1>
     @if(isset($product))
@@ -17,5 +15,4 @@
         <p>Product not found.</p>
     @endif
 </div>
-@endsection
 </x-site-layout>

@@ -12,15 +12,20 @@
 
 @section('content')
 <div class="container">
-    <h1>Product Category Details</h1>
+    <h1>{{ $productcategory->exists ? 'Product Category Details' : 'Create New Product Category' }}</h1>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{ $productCategory->name }}</h5>
-            <p class="card-text"><strong>Description:</strong> {{ $productCategory->description }}</p>
-            <p class="card-text"><strong>Created At:</strong> {{ $productCategory->created_at->format('Y-m-d') }}</p>
-            <a href="{{ route('productcategories.index') }}" class="btn btn-secondary">Back to List</a>
+            @if($productcategory->exists)
+                <h5 class="card-title">{{ $productcategory->name }}</h5>
+                <p class="card-text"><strong>Description:</strong> {{ $productcategory->description }}</p>
+                <p class="card-text"><strong>Created At:</strong> {{ $productcategory->created_at->format('Y-m-d') }}</p>
+            @else
+                <h5 class="card-title">New Product Category</h5>
+                <p class="card-text">This is a new product category form.</p>
+            @endif
+            <a href="{{ route ('productcategories.index') }}" class="btn btn-secondary">Back to List</a>
         </div>
     </div>
 </div>
-@endsection
+@endsection 
 </x-site-layout>

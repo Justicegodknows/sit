@@ -24,11 +24,13 @@ class CommentController extends Controller
         $request->validate([
             'title' => 'nullable|string|max:255',
             'content' => 'required|string|max:1000',
-            'user_id' => 'required|exists:users,id',
-            'product_id' => 'nullable|exists:productsolds,id',
+            
+            'productsolds_id' => 'nullable|exists:productsolds,id',
+            'productcategories_id' => 'nullable|exists:productcategories,id',
         ]);
-        $comment = Comment::create($request->all());
+        $comment = Comment::create($request->except('user_id', 'product_id'));
         return view('comments.store', compact('comment'));
+        $comment = Comment::create($request->except('user_id', 'productsolds_id', 'productcategories_id'));
         return redirect()->route('comments.show', $comment->id)->with('success', 'Comment created successfully');
     }
 
@@ -61,11 +63,11 @@ class CommentController extends Controller
         $request->validate([
             'title' => 'nullable|string|max:255',
             'content' => 'required|string|max:1000',
-            'user_id' => 'required|exists:users,id',
+            'user_id' => 'nullable|exists:users,id',
             
         ]);
 
-        $comment = Comment::create($request->all());
+        $comment = Comment::create($request->except('user_id', 'product_id'));
         return view('comments.update', compact('comment'));
         return redirect()->route('comments.index')->with('success', 'Comment updated successfully');
     }
@@ -80,11 +82,11 @@ class CommentController extends Controller
         $request->validate([
             'title' => 'nullable|string|max:255',
             'content' => 'required|string|max:1000',
-            'user_id' => 'required|exists:users,id',
+            'user_id' => 'nullable|exists:users,id',
             'product_id' => 'nullable|exists:productsolds,id',
         ]);
 
-        $comment->update($request->all());
+        $comment->update($request->except('user_id', 'product_id'));
         return view('comments.destroy', compact('comment'));
     }
 

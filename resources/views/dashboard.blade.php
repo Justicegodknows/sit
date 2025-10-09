@@ -70,13 +70,14 @@
                                 <dl>
                                     <dt class="text-sm font-medium text-gray-500 truncate">Categories</dt>
                                     <dd class="text-lg font-medium text-gray-900">{{ \App\Models\Productcategory::count() }}</dd>
+                                    
                                 </dl>
                             </div>
                         </div>
                     </div>
                     <div class="bg-gray-50 px-5 py-3">
                         <div class="text-sm">
-                            <a href="{{ route('productcategories.index') }}" class="font-medium text-purple-600 hover:text-purple-500">View all categories</a>
+                            <a href="{{ route ('productcategories.index') }}" class="font-medium text-purple-600 hover:text-purple-500">View all categories</a>
                         </div>
                     </div>
                 </div>
@@ -168,10 +169,10 @@
                         <div class="border border-gray-200 rounded-lg p-4">
                             <h4 class="text-sm font-medium text-gray-900 mb-3">Categories</h4>
                             <div class="space-y-2">
-                                <a href="{{ route('productcategories.index') }}" class="block w-full text-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                <a href="{{ route ('productcategories.index') }}" class="block w-full text-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
                                     View All Categories
                                 </a>
-                                <a href="{{ route('productcategories.create') }}" class="block w-full text-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700">
+                                <a href="{{ route ('productcategories.create') }}" class="block w-full text-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700">
                                     Add New Category
                                 </a>
                             </div>
@@ -200,6 +201,8 @@
                                 <a href="{{ route('users.create') }}" class="block w-full text-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700">
                                     Add New User
                                 </a>
+                                
+                        
                             </div>
                         </div>
 

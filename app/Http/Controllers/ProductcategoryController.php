@@ -13,13 +13,22 @@ class ProductcategoryController extends Controller
         return view('productcategories.index', compact('productcategories'));
     }
 
+    public function create()
+    {
+        // Create a new empty productcategory instance for the form
+        $productcategory = new Productcategory();
+        $product = $productcategory; // Define $product variable
+        return view('productcategories.show', compact('productcategory', 'product'));
+    }
+
     public function show($id)
     {
         $productcategory = Productcategory::find($id);
         if (!$productcategory) {
             return view()->json(['message' => 'Product category not found'], 404);
         }
-        return view('productcategories.show', compact('productcategory'));
+        $product = $productcategory; // Define $product variable
+        return view('productcategories.show', compact('productcategory', 'product'));
     }
 
     public function store(Request $request)

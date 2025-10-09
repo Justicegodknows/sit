@@ -9,17 +9,25 @@ class Productsold extends Model
 {
     /** @use HasFactory<\Database\Factories\ProductsoldFactory> */
     use HasFactory;
-    protected $fillable = ['product_id', 'customer_id', 'author_id', 'quantity', 'total_price'];
-    public function product()
-    {
-        return $this->belongsTo(Product::class);
-    }
+    protected $fillable = ['name', 'price', 'sold_at', 'customer_id', 'author_id', 'productcategories_id'];
+    
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class, 'customer_id');
     }
+    
     public function author()
     {
         return $this->belongsTo(Author::class);
+    }
+    
+    public function productcategory()
+    {
+        return $this->belongsTo(Productcategory::class, 'productcategories_id');
+    }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'productsolds_id');
     }
 }

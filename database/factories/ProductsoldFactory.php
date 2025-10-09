@@ -19,11 +19,12 @@ class ProductsoldFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id' => \App\Models\Productsold::factory(),
-            'customer_id' => \App\Models\user::factory(),
+            'name' => $this->faker->words(3, true),
+            'price' => $this->faker->randomFloat(2, 10, 1000),
+            'sold_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'customer_id' => \App\Models\User::factory(),
             'author_id' => \App\Models\Author::factory(),
-            'quantity' => $this->faker->numberBetween(1, 10),
-            'total_price' => $this->faker->randomFloat(2, 10, 1000),
+            'productcategories_id' => \App\Models\Productcategory::factory(),
         ];
     }
 }
