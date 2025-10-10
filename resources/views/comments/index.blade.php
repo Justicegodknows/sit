@@ -37,7 +37,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $comments->links() }}
+        <a href="{{ route('comments.index') }}" class="btn btn-secondary">Back to Comments</a>
     @else
         <p>No comments found.</p>
     @endif

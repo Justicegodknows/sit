@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->text('content');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('productcategories_id')->constrained('productcategories')->onDelete('cascade');
-            $table->foreignId('productsolds_id')->constrained('productsolds')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('productsolds_id')->nullable()->constrained('productsolds')->onDelete('cascade');
             $table->timestamps();
+            $table->foreignId('productcategories_id')->nullable()->constrained('productcategories')->onDelete('cascade');
         });
     }
 

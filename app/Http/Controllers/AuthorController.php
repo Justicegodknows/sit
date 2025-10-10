@@ -22,13 +22,25 @@ class AuthorController extends Controller
         return view('authors.show', compact('author'));
     }
 
-    public function store(Request $request)
+    public function create()
     {
-        $author = Author::create($request->all());
-        return view('authors.store', compact('author'));
+        $users = \App\Models\User::all();
+        return view('authors.create', compact('users'));
     }
     
-    public function update(Request $request, $id)
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:authors,email',
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $author = Author::create($request->all());
+        return redirect()->route('authors.index')->with('success', 'Author created successfully');
+    }
+    
+    public function edit(Request $request, $id)
     {
         $author = Author::find($id);
         if (!$author) {
@@ -38,7 +50,7 @@ class AuthorController extends Controller
         return view('authors.update', compact('author'));
     }
     
-    public function destroy($id)
+    public function delete($id)
     {
         $author = Author::find($id);
         if (!$author) {

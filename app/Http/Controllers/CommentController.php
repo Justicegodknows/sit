@@ -15,23 +15,28 @@ class CommentController extends Controller
 
     public function create()
     {
-        $users = \App\Models\User::all();
-        $products = \App\Models\Productsold::all();
-        return view('comments.create', compact('users', 'products'));
+        $productcategories = \App\Models\Productcategory::all();
+        $productsolds = \App\Models\Productsold::all();
+        return view('comments.create', compact('productcategories', 'productsolds'));
     }
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
             'content' => 'required|string|max:1000',
-            
-            'productsolds_id' => 'nullable|exists:productsolds,id',
-            'productcategories_id' => 'nullable|exists:productcategories,id',
+            'productsolds_id' => 'required|exists:productsolds,id',
+            'productcategories_id' => 'required|exists:productcategories,id',
         ]);
-        $comment = Comment::create($request->except('user_id', 'product_id'));
-        return view('comments.store', compact('comment'));
-        $comment = Comment::create($request->except('user_id', 'productsolds_id', 'productcategories_id'));
-        return redirect()->route('comments.show', $comment->id)->with('success', 'Comment created successfully');
+        
+        $comment = Comment::create([
+            'user_id' => auth()->id(),
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'productsolds_id' => $request->input('productsolds_id'),
+            'productcategories_id' => $request->input('productcategories_id'),
+        ]);
+        
+        return redirect()->route('comments.index')->with('success', 'Comment created successfully');
     }
 
 
@@ -50,7 +55,11 @@ class CommentController extends Controller
         if (!$comment) {
             return redirect()->route('comments.index')->with('error', 'Comment not found');
         }
-        return view('comments.edit', compact('comment'));
+        
+        $productcategories = \App\Models\Productcategory::all();
+        $productsolds = \App\Models\Productsold::all();
+        
+        return view('comments.edit', compact('comment', 'productcategories', 'productsolds'));
     }
 
     public function update(Request $request, $id)
@@ -61,14 +70,19 @@ class CommentController extends Controller
         }
 
         $request->validate([
-            'title' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
             'content' => 'required|string|max:1000',
-            'user_id' => 'nullable|exists:users,id',
-            
+            'productsolds_id' => 'required|exists:productsolds,id',
+            'productcategories_id' => 'required|exists:productcategories,id',
         ]);
 
-        $comment = Comment::create($request->except('user_id', 'product_id'));
-        return view('comments.update', compact('comment'));
+        $comment->update([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'productsolds_id' => $request->input('productsolds_id'),
+            'productcategories_id' => $request->input('productcategories_id'),
+        ]);
+
         return redirect()->route('comments.index')->with('success', 'Comment updated successfully');
     }
 
@@ -78,16 +92,9 @@ class CommentController extends Controller
         if (!$comment) {
             return redirect()->route('comments.index')->with('error', 'Comment not found');
         }
-
-        $request->validate([
-            'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:1000',
-            'user_id' => 'nullable|exists:users,id',
-            'product_id' => 'nullable|exists:productsolds,id',
-        ]);
-
-        $comment->update($request->except('user_id', 'product_id'));
-        return view('comments.destroy', compact('comment'));
+        
+        $comment->delete();
+        return redirect()->route('comments.index')->with('success', 'Comment deleted successfully');
     }
 
     
