@@ -21,12 +21,30 @@ class ProductsoldController extends Controller
             return view('productsolds.show', ['message' => 'Product not found'], 404);
         }
         return view('productsolds.show', compact('productsold'));
+
+    }
+
+    public function create()
+    {
+        $productcategories = \App\Models\Productcategory::all();
+        $authors = \App\Models\Author::all();
+        $customers = \App\Models\User::all();
+        return view('productsolds.create', compact('productcategories', 'authors', 'customers'));
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'sold_at' => 'required|date',
+            'customer_id' => 'required|exists:users,id',
+            'author_id' => 'required|exists:authors,id',
+            'productcategories_id' => 'required|exists:productcategories,id',
+        ]);
+
         $productsold = Productsold::create($request->all());
-        return view('productsolds.store', compact('productsold'));
+        return redirect()->route('productsolds.index')->with('success', 'Product sold created successfully');
     }
 
     public function update(Request $request, $id)

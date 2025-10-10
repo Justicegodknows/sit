@@ -6,6 +6,10 @@
 </div>
 
 
+<div class="container text-center, text-white, bg-black, font-bold, text-2xl">
+    <h1>Sold Products</h1>
+</div>
+
 
 
 <div class="container text-center, text-white, bg-black, font-bold, text-2xl">
