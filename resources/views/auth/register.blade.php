@@ -33,6 +33,21 @@
                     </div>
                     
                     <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                        <input id="username" 
+                               name="username" 
+                               type="text" 
+                               autocomplete="username" 
+                               required 
+                               value="{{ old('username') }}"
+                               class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm @error('username') border-red-500 @enderror" 
+                               placeholder="Choose a username">
+                        @error('username')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
                         <input id="email" 
                                name="email" 

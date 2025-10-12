@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\ProfileController; 
@@ -22,7 +23,7 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth'])
     ->name('dashboard');
 
  // authentication routes
@@ -71,7 +72,7 @@ Route::delete('/productsolds/{productsold}', [ProductsoldController::class, 'des
 // Dashboard route that links to product category page after login
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth'])
     ->name('dashboard');
 
 Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');

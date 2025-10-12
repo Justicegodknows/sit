@@ -18,12 +18,14 @@ class AuthController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
         $user = User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
@@ -40,15 +42,17 @@ class AuthController extends Controller
     // Create a default admin user if it doesn't exist
     public static function ensureDefaultAdmin()
     {
-        $defaultEmail = 'admin';
+        $defaultAdmin = 'admin';
         $defaultPassword = 'admin';
 
-        $user = User::where('email', $defaultEmail)->first();
+        $user = User::where('username', $defaultAdmin)->first();
         if (!$user) {
             User::create([
                 'name' => 'Admin',
-                'email' => $defaultEmail,
+                'username' => $defaultAdmin,
+                'email' => 'admin@example.com',
                 'password' => Hash::make($defaultPassword),
+                'email_verified_at' => now(),
             ]);
         }
     }
@@ -58,7 +62,7 @@ class AuthController extends Controller
         self::ensureDefaultAdmin();
 
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
@@ -67,7 +71,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
+        return back()->withErrors(['username' => 'Invalid credentials'])->onlyInput('username');
     }
 
     public function logout(Request $request)

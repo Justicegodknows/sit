@@ -18,15 +18,15 @@
                 
                 <div class="rounded-md shadow-sm -space-y-px">
                     <div>
-                        <label for="email" class="sr-only">Email address</label>
-                        <input id="email" 
-                               name="email" 
-                               type="email" 
-                               autocomplete="email" 
+                        <label for="username" class="sr-only">Username</label>
+                        <input id="username" 
+                               name="username" 
+                               type="text" 
+                               autocomplete="username" 
                                required 
-                               value="{{ old('email') }}"
-                               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm @error('email') border-red-500 @enderror" 
-                               placeholder="Email address">
+                               value="{{ old('username') }}"
+                               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm @error('username') border-red-500 @enderror" 
+                               placeholder="Username">
                     </div>
                     <div>
                         <label for="password" class="sr-only">Password</label>
