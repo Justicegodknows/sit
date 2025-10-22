@@ -23,7 +23,6 @@ class CommentController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string|max:1000',
             'content' => 'required|string|max:1000|min:10',
             'productsolds_id' => 'required|exists:productsolds,id',
             'productcategories_id' => 'required|exists:productcategories,id',
@@ -72,7 +71,6 @@ class CommentController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string|max:1000',
             'content' => 'required|string|max:1000|min:10',
             'productsolds_id' => 'required|exists:productsolds,id',
             'productcategories_id' => 'required|exists:productcategories,id',
