@@ -5,8 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Author;
 use App\Models\ProductCategory;
-use App\Models\Productsold;
-use App\Models\Comment;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,28 +17,65 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create users first (no dependencies)
-        User::factory()->create([
-            'name' => 'Test User',
+        $testUser = User::factory()->create([
+            'first_name' => 'Test',
+            'last_name' => 'User',
             'email' => 'test@example.com',
         ]);
         User::factory()->count(5)->create();
         $this->command->info('Users created successfully.');
     
-        // Create authors (no dependencies)
-        Author::factory()->count(10)->create();
+        // Get only user IDs we need (memory efficient)
+        $userIds = User::limit(6)->pluck('id')->toArray();
+    
+        // Create authors directly (no factory to avoid nested relationships)
+        $testAuthor = Author::create([
+            'user_id' => $testUser->id,
+            'first_name' => 'Test',
+            'last_name' => 'Author',
+        ]);
+        
+        // Create additional authors using existing user IDs
+        $firstNames = ['John', 'Jane', 'Bob', 'Alice', 'Charlie'];
+        $lastNames = ['Smith', 'Doe', 'Johnson', 'Williams', 'Brown'];
+        $remainingUserIds = array_slice($userIds, 1, 5);
+        foreach ($remainingUserIds as $index => $userId) {
+            Author::create([
+                'user_id' => $userId,
+                'first_name' => $firstNames[$index] ?? 'Author' . ($index + 1),
+                'last_name' => $lastNames[$index] ?? 'Name' . ($index + 1),
+            ]);
+        }
         $this->command->info('Authors created successfully.');
 
-        // Create product categories (depends on authors)
-        ProductCategory::factory()->count(10)->create();
+        // Get only author IDs we need (memory efficient)
+        $authorIds = Author::limit(6)->pluck('id')->toArray();
+
+        // Create product categories directly (no factory to avoid nested relationships)
+        ProductCategory::create([
+            'author_id' => $testAuthor->id,
+            'name' => 'Test Category',
+            'description' => 'Test Description',
+        ]);
+        
+        // Create additional product categories using existing author IDs
+        $categoryNames = ['Electronics', 'Books', 'Clothing', 'Food', 'Sports'];
+        $descriptions = [
+            'Electronic devices and accessories',
+            'Books and reading materials',
+            'Clothing and fashion items',
+            'Food and beverages',
+            'Sports equipment and gear'
+        ];
+        $remainingAuthorIds = array_slice($authorIds, 0, 5);
+        foreach ($remainingAuthorIds as $index => $authorId) {
+            ProductCategory::create([
+                'author_id' => $authorId,
+                'name' => $categoryNames[$index] ?? 'Category ' . uniqid(),
+                'description' => $descriptions[$index] ?? 'Category description ' . ($index + 1),
+            ]);
+        }
         $this->command->info('Product Categories created successfully.');
-       
-        // Create products sold (depends on users and authors)
-        Productsold::factory()->count(10)->create();
-        $this->command->info('Products Sold created successfully.');
-    
-        // Create comments (depends on users, products, and categories)
-        Comment::factory()->count(10)->create();
-        $this->command->info('Comments created successfully.');
     }
 }
 /**

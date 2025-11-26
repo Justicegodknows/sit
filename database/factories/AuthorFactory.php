@@ -19,8 +19,8 @@ class AuthorFactory extends Factory
 
         return [
             'user_id' => \App\Models\User::factory(),
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
         ];
     }
 }

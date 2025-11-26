@@ -18,7 +18,7 @@ class ProductcategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->word(),
+            'name' => $this->faker->words(2, true) . '-' . $this->faker->uuid(),
             'description' => $this->faker->sentence(6, true),
             'author_id' => \App\Models\Author::factory(),
         ];

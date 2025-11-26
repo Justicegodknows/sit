@@ -9,7 +9,7 @@ class ProductcategoryController extends Controller
 {
     public function index()
     {
-        $productcategories = Productcategory::all();
+        $productcategories = Productcategory::limit(10)->get();
         return view('productcategories.index', compact('productcategories'));
     }
 
@@ -25,7 +25,7 @@ class ProductcategoryController extends Controller
     {
         $productcategory = Productcategory::find($id);
         if (!$productcategory) {
-            return view()->json(['message' => 'Product category not found'], 404);
+            return view('productcategories.show', ['message' => 'Product category not found'], 404);
         }
         $product = $productcategory; // Define $product variable
         return view('productcategories.show', compact('productcategory', 'product'));

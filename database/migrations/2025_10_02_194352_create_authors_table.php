@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             // link authors to users
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('first_name');
+            $table->string('last_name');
             $table->timestamps();
         });
     }
