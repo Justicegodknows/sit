@@ -25,7 +25,7 @@ class ProductcategoryController extends Controller
     {
         $productcategory = Productcategory::find($id);
         if (!$productcategory) {
-            return view('productcategories.show', ['message' => 'Product category not found'], 404);
+            return view('productcategories.show', compact('productcategory'));
         }
         $product = $productcategory; // Define $product variable
         return view('productcategories.show', compact('productcategory', 'product'));
@@ -37,23 +37,31 @@ class ProductcategoryController extends Controller
         return view('productcategories.store', compact('productcategory'));
     }
 
+    public function edit($id)
+    {
+        $productcategory = Productcategory::find($id);
+        if (!$productcategory) {
+            return view('productcategories.edit', compact('productcategory'));
+        }
+        return view('productcategories.edit', compact('productcategory'));
+    }
     public function update(Request $request, $id)
     {
         $productcategory = Productcategory::find($id);
         if (!$productcategory) {
-            return view('productcategories.update', ['message' => 'Product category not found'], 404);
+            return view('productcategories.update', compact('productcategory'));
         }
         $productcategory->update($request->all());
-        return view('productcategories.update', compact('productcategory'));
+        return view('productcategories.show', compact('productcategory'));
     }
 
     public function destroy($id)
     {
         $productcategory = Productcategory::find($id);
         if (!$productcategory) {
-            return view('productcategories.destroy', ['message' => 'Product category not found'], 404);
+            return view('productcategories.destroy', compact('productcategory'));
         }
         $productcategory->delete();
-        return view('productcategories.destroy', ['message' => 'Product category deleted']);
+        return view('productcategories.destroy', compact('productcategory'));
     }
 }
