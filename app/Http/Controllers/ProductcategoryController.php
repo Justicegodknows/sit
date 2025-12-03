@@ -18,50 +18,17 @@ class ProductcategoryController extends Controller
         // Create a new empty productcategory instance for the form
         $productcategory = new Productcategory();
         $product = $productcategory; // Define $product variable
-        return view('productcategories.show', compact('productcategory', 'product'));
+        return view('productcategories.create', compact('productcategory', 'product'));
     }
 
-    public function show($id)
+    public function store()
     {
-        $productcategory = Productcategory::find($id);
-        if (!$productcategory) {
-            return view('productcategories.show', compact('productcategory'));
-        }
-        $product = $productcategory; // Define $product variable
-        return view('productcategories.show', compact('productcategory', 'product'));
+        
+        return redirect()->route('productcategories.index')->with('success', 'Product category created successfully');
     }
 
-    public function store(Request $request)
+    public function show(Productcategory $productcategory)
     {
-        $productcategory = Productcategory::create($request->all());
-        return view('productcategories.store', compact('productcategory'));
-    }
-
-    public function edit($id)
-    {
-        $productcategory = Productcategory::find($id);
-        if (!$productcategory) {
-            return view('productcategories.edit', compact('productcategory'));
-        }
-        return view('productcategories.edit', compact('productcategory'));
-    }
-    public function update(Request $request, $id)
-    {
-        $productcategory = Productcategory::find($id);
-        if (!$productcategory) {
-            return view('productcategories.update', compact('productcategory'));
-        }
-        $productcategory->update($request->all());
         return view('productcategories.show', compact('productcategory'));
-    }
-
-    public function destroy($id)
-    {
-        $productcategory = Productcategory::find($id);
-        if (!$productcategory) {
-            return view('productcategories.destroy', compact('productcategory'));
-        }
-        $productcategory->delete();
-        return view('productcategories.destroy', compact('productcategory'));
     }
 }

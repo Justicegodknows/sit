@@ -1,5 +1,5 @@
 <x-site-layout>
-<form method="POST" action="/productcategories/{{ $productcategory->id }}" class="max-w-md mx-auto bg-white p-6 rounded shadow">
+<form method="POST" action="{{ route('productcategories.update', $productcategory->id) }}" class="max-w-md mx-auto bg-white p-6 rounded shadow">
         @csrf
         @method('PATCH')
 
