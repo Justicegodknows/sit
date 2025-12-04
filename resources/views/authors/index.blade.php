@@ -1,61 +1,40 @@
 <x-site-layout>
-    
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Authors
-        </h2>
-    
-        <div class="container">
-            <h1>Authors</h1>
-            <a href="{{ route('authors.create') }}" class="btn btn-primary mb-3">Add New Author</a>
-            <a href="{{ route('authors.index') }}" class="btn btn-secondary">Back to Authors</a>
-            @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Product Categories</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($authors as $author)
-                        <tr>
-                            <td>{{ $author->name }}</td>
-                            <td>{{ $author->email }}</td>
-                            <td>
-                                @if($author->productcategories->count())
-                                    <ul>
-                                        @foreach($author->productcategories as $productcategory)
-                                            <li>{{ $productcategory->name }}</li>
-                                        @endforeach
-                                    </ul>
-                                @else
-                                    <em>No product categories</em>
-                                @endif
-                            </td>
-                            <td>
-                                <a href="{{ route('authors.show', $author->id) }}" class="btn btn-info btn-sm">View</a>
-                                <a href="{{ route('authors.edit', $author->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('authors.destroy', $author->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" onclick="return confirm('Delete this author?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4" class="text-center">No authors found.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-            <a href="{{ route('authors.index') }}" class="btn btn-secondary">Back to Authors</a>
-            
-    
+    <x-slot:heading>
+        Authors
+    </x-slot:heading>
+
+    <div class="mb-6">
+        <x-button href="{{ route('authors.create') }}" class="btn btn-primary mb-3">Add New Author</x-button>
+    </div>
+
+    @if(session('success'))
+        <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+            {{ session('success') }}
         </div>
-    
+    @endif
+
+    <div class="space-y-6"> 
+        @foreach($authors as $author)
+        <div class="p-4 border rounded-md flex items-center justify-between hover:bg-gray-50">
+            <a href="/authors/{{ $author->id }}" class="flex-1">
+                <h3 class="text-lg font-semibold">{{ $author->first_name }} {{ $author->last_name }}</h3>
+                @if($author->productcategories->count())
+                    <p class="text-sm text-gray-500 mt-1">Product Categories: {{ $author->productcategories->count() }}</p>
+                @else
+                    <p class="text-sm text-gray-400 mt-1">No product categories</p>
+                @endif
+            </a>
+            <form action="{{ route('authors.destroy', $author->id) }}" method="POST" class="ml-4" onsubmit="return confirm('Are you sure you want to delete this author?');">
+                @csrf
+                @method('DELETE')
+                <x-form-button type="submit" class="btn btn-danger">Delete</x-form-button>
+            </form>
+        </div>
+        @endforeach
+        
+    </div>
+
+    <div class="mt-6">
+        {{ $authors->links() }}
+    </div>
 </x-site-layout>

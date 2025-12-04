@@ -1,10 +1,9 @@
-<x-site-layout
-
+<x-site-layout>
     <x-slot:heading>
         Create Author
     </x-slot:heading>
     
-    <x-form-error/>
+    
     
 
     <form method="POST" action="/authors" class="max-w-md mx-auto bg-white p-6 rounded shadow">
@@ -30,5 +29,5 @@
         <div>
               <x-form-button>Save</x-form-button>
         </div>
-    </form>
-</x-site-layout>                          
+    </form>                         
+</x-site-layout>

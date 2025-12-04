@@ -13,7 +13,12 @@
 
         <div class="mb-4">
             <x-form-label for="author_id">Author:</x-form-label>
-            <x-form-input type="text" name="author_id" id="author_id" placeholder="Enter author" required />
+            <select name="author_id" id="author_id" class="w-full border border-gray-300 p-2 rounded">
+                <option value="">Select an author (optional)</option>
+                @foreach($authors as $author)
+                    <option value="{{ $author->id }}">{{ $author->first_name }} {{ $author->last_name }}</option>
+                @endforeach
+            </select>
         </div>
 
         <div>

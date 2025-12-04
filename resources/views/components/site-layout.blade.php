@@ -8,6 +8,8 @@
 </head>
 
 <body class="h-full">
+    @yield('content')
+
   
 <div class="min-h-full">
   <nav class="bg-gray-800">
