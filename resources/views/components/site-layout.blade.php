@@ -7,11 +7,9 @@
         <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="h-full">
-    @yield('content')
-
-  
-<div class="min-h-full">
+<body class=" image-full-width">
+  @vite('resources/css/app.css')
+  <div class="min-h-full">
   <nav class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
