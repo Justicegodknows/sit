@@ -35,6 +35,23 @@ The platform uses a robust, scalable database design to support multi-tenancy, o
 - Store owners can create and manage their own stores, products, and promotions.
 - Customers can browse stores, add products to cart (even from multiple stores), and checkout securely.
 - After purchase, customers can leave reviews and comments on products and stores.
+# Installation
+ 1. Clone the repository:
+- git clone https://github.com/yourusername/multivendor-shop.git
+    cd multivendor-shop
+2. Install dependencies:
+  -     composer install
+    npm install && npm run dev
+3. Copy .env and set up configuration:
+-     cp .env.example .env
+### Set your database, mail, and payment gateway credentials in `.env`.
+4. Generate application key:
+-     php artisan key:generate
+5. Run migrations and seeders:
+-    php artisan migrate --seed
+6.Start the development server:
+-     php artisan serve
+ 
 # Simple Diagram
 ``````mermaid
 erDiagram
