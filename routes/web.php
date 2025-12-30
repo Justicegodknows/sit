@@ -16,7 +16,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/home', function () {
-    return view('welcome');
+    return view('home');
 })->name('home');
 
  // authentication routes

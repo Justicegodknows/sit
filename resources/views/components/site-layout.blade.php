@@ -18,22 +18,26 @@
          
             <div class="ml-10 flex items-baseline space-x-4">
              
-              <x-nav-link type="a" href="/" :active="request()->is('/')"> Home</x-nav-link>
               @auth
+              <x-nav-link type="a" href="/home" :active="request()->is('/home')"> Home</x-nav-link>
               <x-nav-link type="a" href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-nav-link>
               <x-nav-link type="a" href="/productcategories" :active="request()->is('productcategories')">Product Category</x-nav-link>
               @endauth
+              @guest
+              <x-nav-link type="a" href="/home" :active="request()->is('/home')"> Home</x-nav-link>
+              <x-nav-link type="a" href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+              @endguest
               <x-nav-link type="a" href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
               
             </div>
        
         </div>
-        
+        @guest
          <div class="mt-3 space-y-1 px-2">
           <x-nav-link href="a" href="/register">Register</x-nav-link>
           <x-nav-link href="a" href="/login">Login</x-nav-link>
         </div>
-        
+        @endguest
         @auth
         <div class="mt-3 space-y-1 px-2">
           <form method="POST" action="/logout">
