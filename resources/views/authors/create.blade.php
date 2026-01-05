@@ -21,11 +21,7 @@
             <x-form-input type="text" name="email" id="email" placeholder="Enter email" required />
         </div>
 
-        <div class="mb-4">
-            <x-form-label for="description">Product Categories:</x-form-label>
-            <x-form-input as="textarea" name="product_categories" id="product_categories" placeholder="Enter product categories" rows="5" required />
-        </div>
-
+        
         <div>
               <x-form-button>Save</x-form-button>
         </div>

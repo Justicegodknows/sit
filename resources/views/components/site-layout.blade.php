@@ -21,7 +21,7 @@
               @auth
               <x-nav-link type="a" href="/home" :active="request()->is('/home')"> Home</x-nav-link>
               <x-nav-link type="a" href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-nav-link>
-              <x-nav-link type="a" href="/productcategories" :active="request()->is('productcategories')">Product Category</x-nav-link>
+              <x-nav-link type="a" href="/productcategories" :active="request()->is('productcategories')">Products</x-nav-link>
               @endauth
               @guest
               <x-nav-link type="a" href="/home" :active="request()->is('/home')"> Home</x-nav-link>

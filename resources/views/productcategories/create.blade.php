@@ -22,7 +22,7 @@
         </div>
 
         <div>
-              <x-form-button type="submit">Create Product Category</x-form-button>
+              <x-form-button type="submit">Create Product</x-form-button>
               <x-form-button type="button" href='/productcategories'>Cancel</x-form-button>
               
         </div>

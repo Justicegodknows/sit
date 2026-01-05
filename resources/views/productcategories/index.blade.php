@@ -1,10 +1,10 @@
 <x-site-layout>
     <x-slot:heading>
-        Product Categories
+        Products
     </x-slot:heading>
 
     <div class="mb-6">
-        <x-button href="/productcategories/create" class="btn btn-primary mb-3">Add New Category</x-button>
+        <x-button href="/productcategories/create" class="btn btn-primary mb-3">Add New Product</x-button>
     </div>
 
     @if(session('success'))
