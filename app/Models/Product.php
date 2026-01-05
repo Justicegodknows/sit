@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Author;
-class Productcategory extends Model
+class Product extends Model
 {
-    /** @use HasFactory<\Database\Factories\ProductcategoryFactory> */
+    /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
     protected $fillable = ['name', 'description', 'author_id'];
     public function author()

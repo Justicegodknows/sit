@@ -7,7 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductcategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
 
@@ -41,17 +41,17 @@ Route::delete('/authors/{author}', [AuthorController::class, 'destroy'])->name('
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')->where('user', '[0-9]+');
 
-Route::get('/productcategories', [ProductcategoryController::class, 'index'])->name('productcategories.index');
-Route::get('/productcategories/create', [ProductcategoryController::class, 'create'])->name('productcategories.create');
-Route::post('/productcategories', [ProductcategoryController::class, 'store'])->name('productcategories.store');
-Route::get('/productcategories/{productcategory}', [ProductcategoryController::class, 'show'])->name('productcategories.show')->where('productcategory', '[0-9]+');
-Route::get('/productcategories/{productcategory}/edit', [ProductcategoryController::class, 'edit'])->name('productcategories.edit')->where('productcategory', '[0-9]+');
-Route::put('/productcategories/{productcategory}', [ProductcategoryController::class, 'update'])->name('productcategories.update')->where('productcategory', '[0-9]+');
-Route::delete('/productcategories/{productcategory}', [ProductcategoryController::class, 'destroy'])->name('productcategories.destroy')->where('productcategory', '[0-9]+');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show')->where('product', '[0-9]+');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit')->where('product', '[0-9]+');
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update')->where('product', '[0-9]+');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->where('product', '[0-9]+');
 
 
 
-// Dashboard route that links to product category page after login
+// Dashboard route that links to product page after login
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth'])

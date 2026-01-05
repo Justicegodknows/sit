@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Author;
-use App\Models\ProductCategory;
+use App\Models\Product;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,13 +31,13 @@ class DatabaseSeeder extends Seeder
         }
         $this->command->info('✓ Created 30 authors.');
 
-        // Create product categories using existing author IDs
+        // Create products using existing author IDs
         // Factory already generates unique names with UUID
         for ($i = 0; $i < 100; $i++) {
             $authorId = Author::inRandomOrder()->value('id');
-            ProductCategory::factory()->create(['author_id' => $authorId]);
+            Product::factory()->create(['author_id' => $authorId]);
         }
-        $this->command->info('✓ Created 100 product categories.');
+        $this->command->info('✓ Created 100 products.');
 
         $this->command->info('✓ Fake data generation completed successfully!');
     }
